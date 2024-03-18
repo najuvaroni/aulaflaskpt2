@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .titulo {
+            flex-basis: 40%;
+            text-align: left;
+        }
+
+        .receita {
+            flex-basis: 40%;
+            text-align: left;
+        }
+
+        .valor_receita {
+            flex-basis: 10%;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de receitas</h1>
+    <ul>
+        <li>
+            <span class="titulo">Receitas</span>
+            <span class="valor_receita">Valor</span>
+            <span class="editar"></span>
+            <span class="deletar"></span>
+        </li>
+        <!-- Aqui começa a parte dinâmica -->
+        {% for Financeiro in outro %}
+            <li>
+                <span class="nome_receita">{{ Financeiro['Descrição'] }}</span>
+                <span class="valor_receita">{{ Financeiro['valor_receita'] }}</span>
+                <span class="data_receita">{{ Financeiro['data_receita'] }}</span>
+                <span class="editar"><a href="{{ url_for('editar', id=Financeiro.id_livro)}}">Editar</a></span>
+                <span>&nbsp;</span>
+                <span class="deletar"><a href="{{ url_for('deletar', id=livro.id_livro)}}">Excluir</a></span>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
